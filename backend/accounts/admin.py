@@ -1,14 +1,24 @@
 from django.contrib import admin
-# from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
+from .models import UserAccount
 
-# User = get_user_model()
+class CustomUserAdmin(UserAdmin):
+    model = UserAccount
+    list_display = ('email', 'full_name', 'phone_number', 'role', 'is_staff', 'is_active')
+    list_filter = ('is_staff', 'is_active', 'role')
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Personal Info', {'fields': ('full_name', 'phone_number', 'role')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2', 'full_name', 'phone_number', 'role', 'is_staff', 'is_active')}
+        ),
+    )
+    search_fields = ('email', 'full_name', 'phone_number')
+    ordering = ('email',)
 
-
-# class UserAdmin(admin.ModelAdmin):
-#     list_display = ('id', 'first_name', 'last_name', 'email', )
-#     list_display_links = ('id', 'first_name', 'last_name', 'email', )
-#     search_fields = ('first_name', 'last_name', 'email', )
-#     list_per_page = 25
-
-
-# admin.site.register(User, UserAdmin)
+# Register the UserAccount model with the CustomUserAdmin
+admin.site.register(UserAccount, CustomUserAdmin)

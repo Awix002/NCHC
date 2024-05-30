@@ -47,7 +47,11 @@ INSTALLED_APPS = [
     'corsheaders',
     'inventory',
     'category',
+    'labtest',
     'labreport',
+    'appointment',
+    'feedback',
+    'dashboard',
 
 ]
 
@@ -130,6 +134,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
+
+GOOGLE_API_KEY = 'AIzaSyA3-w6cVZii1pK3wnOxGmiDSCbCG53CqIs'
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -164,7 +171,7 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=90),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     'AUTH_TOKEN_CLASSES': (
         'rest_framework_simplejwt.tokens.AccessToken',
@@ -187,7 +194,7 @@ DJOSER = {
     'SERIALIZERS': {
         'user_create': 'accounts.serializers.UserCreateSerializer',
         'user': 'accounts.serializers.UserCreateSerializer',
-        'current_user': 'user.serializers.UserCreateSerializer',
+        'current_user': 'accounts.serializers.UserCreateSerializer',
         'user_delete': 'accounts.serializers.UserDeleteSerializer',
     }
 

@@ -10,8 +10,14 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('api/', include('accounts.urls')),
     path('api/', include('inventory.urls')),
+    path('api/', include('category.urls')),
+    path('api/', include('labtest.urls')),
     path('api/', include('labreport.urls')),
-    path('api/', include('pdf_generator.urls'))
+    path('api/', include('feedback.urls')),
+    path('api/', include('appointment.urls')),
+    path('api/', include('user_profile.urls')),
+    path('api/', include('dashboard.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name = 'index.html'))]

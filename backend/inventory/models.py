@@ -1,11 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
 import datetime
 from category.models import Category
 
 
 class Inventory(models.Model):
-    photo = models.ImageField(upload_to='photos/%Y/%m/')
+    photo = models.ImageField(upload_to='photos/%Y/%m/', null=True, blank=True)
     name = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
@@ -17,4 +16,4 @@ class Inventory(models.Model):
     
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name

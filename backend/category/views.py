@@ -1,67 +1,57 @@
-# from django.shortcuts import render
-
-# # Create your views here.
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from rest_framework import status
-# from rest_framework import permissions
-# from .models import Category
-
-
-# class ListCategoriesView(APIView):
-#     permission_classes = (permissions.AllowAny, )
-
-#     def get(self, request, format=None):
-#         if Category.objects.all().exists():
-#             categories = Category.objects.all()
-
-#             result = []
-
-#             for category in categories:
-#                 if not category.parent:
-#                     item = {}
-#                     item['id'] = category.id
-#                     item['name'] = category.name
-
-#                     item['sub_categories'] = []
-#                     for cat in categories:
-#                         sub_item = {}
-#                         if cat.parent and cat.parent.id == category.id:
-#                             sub_item['id'] = cat.id
-#                             sub_item['name'] = cat.name
-#                             sub_item['sub_categories'] = []
-
-#                             item['sub_categories'].append(sub_item)
-
-#                     result.append(item)
-#             return Response({'categories': result}, status=status.HTTP_200_OK)
-#         else:
-#             return Response({'error': 'No categories found'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import permissions
+from rest_framework import status, permissions
 from .models import Category
+from .serializers import CategorySerializer
+from rest_framework.permissions import IsAuthenticated, BasePermission
+
+class IsAdmin(BasePermission):
+    def has_permission(self, request, view):
+        return request.user and request.user.role.lower() == 'admin'
 
 
-class ListCategoriesView(APIView):
+class CategoryListCreateAPIView(APIView):
+    permission_classes = (IsAuthenticated, IsAdmin )
+
+    def get(self, request):
+        categories = Category.objects.all()
+        serializer = CategorySerializer(categories, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = CategorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CategoryRetrieveUpdateDeleteView(APIView):
     permission_classes = (permissions.AllowAny, )
 
-    def get(self, request, format=None):
-        # Filter categories without parent categories
-        categories = Category.objects.filter(parent=None)
+    def get(self, request, pk):
+        category = Category.objects.get(id=pk)
+        serializer = CategorySerializer(category)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-        # Serialize the categories
-        serialized_categories = []
-        for category in categories:
-            serialized_category = {
-                'id': category.id,
-                'name': category.name
-            }
-            serialized_categories.append(serialized_category)
+    def put(self, request, pk):
+        category = Category.objects.get(id=pk)
+        serializer = CategorySerializer(category, data=request.data)
 
-        return Response({'categories': serialized_categories}, status=status.HTTP_200_OK)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def patch(self, request, pk):
+        category = Category.objects.get(id=pk)
+        serializer = CategorySerializer(category, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        category = Category.objects.get(id=pk)
+        category.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

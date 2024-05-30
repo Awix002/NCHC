@@ -1,17 +1,15 @@
-# labreport/admin.py
 from django.contrib import admin
-from .models import LabTest, LabReport
+from .models import LabReport, LabResult
 
-class LabTestAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'unit', 'reference_value')
-    search_fields = ('name',)
-    list_per_page = 25
+class LabResultInline(admin.TabularInline):
+    model = LabResult
+    extra = 1
 
+@admin.register(LabReport)
 class LabReportAdmin(admin.ModelAdmin):
-    list_display = ('id', 'test', 'result')
-    list_display_links = ('id', 'test')
-    search_fields = ('test__name', 'result')
-    list_per_page = 25
+    list_display = ('user', 'sample_received_date', 'referenced_by', 'report_date')
+    inlines = [LabResultInline]
 
-admin.site.register(LabTest, LabTestAdmin)
-admin.site.register(LabReport, LabReportAdmin)
+@admin.register(LabResult)
+class LabResultAdmin(admin.ModelAdmin):
+    list_display = ('lab_report', 'lab_test', 'result')

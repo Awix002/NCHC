@@ -1,14 +1,38 @@
 {
   "files": {
-    "main.css": "/static/css/main.32a55de7.css",
-    "main.js": "/static/js/main.5082acae.js",
+    "main.css": "/static/css/main.e7f1b8aa.css",
+    "main.js": "/static/js/main.16cc42fa.js",
+    "static/js/703.ad1d155e.chunk.js": "/static/js/703.ad1d155e.chunk.js",
+    "static/js/198.87bbfd97.chunk.js": "/static/js/198.87bbfd97.chunk.js",
+    "static/media/SH.jpg": "/static/media/SH.88b423c72ca9b4bc9cb0.jpg",
+    "static/media/homepagemain.jpg": "/static/media/homepagemain.a30ada8aae61cdf7d7e5.jpg",
+    "static/media/H5.jpg": "/static/media/H5.1e0cd46d4b3f8816b0d1.jpg",
+    "static/media/H7.jpg": "/static/media/H7.0323921d463eda3b8158.jpg",
+    "static/media/labreports.png": "/static/media/labreports.595b8aa093698181b454.png",
+    "static/media/contactus.png": "/static/media/contactus.d76c66b7291402ce9818.png",
+    "static/media/labtests.png": "/static/media/labtests.50d8f4c433f7bf082106.png",
+    "static/media/labrecords.png": "/static/media/labrecords.08bb4167f6e558fe3541.png",
+    "static/media/h2.jpg": "/static/media/h2.85bcf4b56f0d78c2f771.jpg",
+    "static/media/bookappointment.png": "/static/media/bookappointment.2e79806e1f96f2d6fe79.png",
+    "static/media/appointmentbooking.png": "/static/media/appointmentbooking.40385adef49b58df555a.png",
+    "static/media/H3.png": "/static/media/H3.3729ce7229483df3a198.png",
+    "static/media/H4.jpg": "/static/media/H4.adbf32efb89e00ef8203.jpg",
+    "static/media/historyofmedicine.jpg": "/static/media/historyofmedicine.230a54811806467d46f3.jpg",
+    "static/media/treatmentmethod.jpg": "/static/media/treatmentmethod.35076aedab602f4c05c7.jpg",
     "static/media/logo.png": "/static/media/logo.26d13f60ce927261b86b.png",
+    "static/media/labreport.png": "/static/media/labreport.7e57a95656d4a6ddf8bf.png",
+    "static/media/staff01.png": "/static/media/staff01.0f93d525a7463f21d9a8.png",
+    "static/media/labtest.png": "/static/media/labtest.fcb034c6564a401474b0.png",
+    "static/media/categorization.png": "/static/media/categorization.77c1b23b89941dc38d21.png",
+    "static/media/consultation.png": "/static/media/consultation.169f1c988b6bebf27d7a.png",
     "index.html": "/index.html",
-    "main.32a55de7.css.map": "/static/css/main.32a55de7.css.map",
-    "main.5082acae.js.map": "/static/js/main.5082acae.js.map"
+    "main.e7f1b8aa.css.map": "/static/css/main.e7f1b8aa.css.map",
+    "main.16cc42fa.js.map": "/static/js/main.16cc42fa.js.map",
+    "703.ad1d155e.chunk.js.map": "/static/js/703.ad1d155e.chunk.js.map",
+    "198.87bbfd97.chunk.js.map": "/static/js/198.87bbfd97.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.32a55de7.css",
-    "static/js/main.5082acae.js"
+    "static/css/main.e7f1b8aa.css",
+    "static/js/main.16cc42fa.js"
   ]
 }
