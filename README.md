@@ -1,6 +1,10 @@
 # Project Screenshot
 ![S1](https://github.com/Awix002/NCHC/assets/100296672/8caa0096-e623-4114-b213-6e0471d02466)
 
+![image](https://github.com/user-attachments/assets/d808c58b-4695-433c-9648-081e3ddbd9c2)
+
+![Picture1000](https://github.com/user-attachments/assets/e9cb58ac-6f93-4f10-a6d4-e78658551659)
+
 !! please follow these steps to successfully run this project in your Windows Device !!
 
 # Getting Started for Windows
